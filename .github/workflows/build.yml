@@ -84,7 +84,9 @@ jobs:
           name: ${{ needs.build.outputs.artifact_name }}
           path: ~/
       - name: Ensure script is executable
-        run: chmod +x deploy.sh
+        run: |
+          chmod +x deploy.sh
+          ls -la # debug, removeme
       - name: Copy build artefact tar onto remote
         run: scp ~/${{ needs.build.outputs.artifact_name }} ${{vars.STAGING_REMOTE_USER}}@${{ vars.STAGING_REMOTE_HOST }}:~/
       - name: Untar, move, and run release
