@@ -82,9 +82,10 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: ${{ needs.build.outputs.artifact_name }}
+          path: ~/
       - name: Ensure script is executable
         run: chmod +x deploy.sh
       - name: Copy build artefact tar onto remote
-        run: scp ${{ needs.build.outputs.artifact_name }} ${{vars.STAGING_REMOTE_USER}}@${{ vars.STAGING_REMOTE_HOST }}:~/
+        run: scp ~/${{ needs.build.outputs.artifact_name }} ${{vars.STAGING_REMOTE_USER}}@${{ vars.STAGING_REMOTE_HOST }}:~/
       - name: Untar, move, and run release
         run: cat deploy.sh | ssh ${{vars.STAGING_REMOTE_USER}}@${{ vars.STAGING_REMOTE_HOST }}
