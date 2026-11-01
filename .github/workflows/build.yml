@@ -8,7 +8,7 @@ name: Auslan Signbank
 on:
   push:
     branches:
-      - main
+      - actions-sh-migration
 
 permissions:
   contents: read
