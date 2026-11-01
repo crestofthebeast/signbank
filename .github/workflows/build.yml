@@ -17,6 +17,8 @@ jobs:
   build:
     name: Build release
     runs-on: ubuntu-22.04
+    environment:
+      name: testvm
     outputs:
       artifact_name: ${{ steps.output.outputs.artifact_name }}
       artifact_filename: ${{ steps.output.outputs.artifact_filename }}
@@ -61,8 +63,7 @@ jobs:
     name: Deploy release
     runs-on: ubuntu-latest
     environment:
-      name: uat
-      url: https://uat.auslan.org.au
+      name: testvm
     needs: build
     defaults:
       run:
