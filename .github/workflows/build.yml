@@ -66,8 +66,7 @@ jobs:
     needs: build
     defaults:
       run:
-        shell: bash
-        working-directory: /scripts
+        working-directory: ./scripts
 
     steps:
       - name: Download a Build Artifact
