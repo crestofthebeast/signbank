@@ -64,6 +64,10 @@ jobs:
       name: uat
       url: https://uat.auslan.org.au
     needs: build
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./scripts
 
     steps:
       - name: Download a Build Artifact
@@ -71,8 +75,8 @@ jobs:
         with:
           name: ${{ needs.build.outputs.artifact_name }}
       - name: Ensure script is executable
-        run: chmod +x ./scripts/deploy.sh
+        run: chmod +x deploy.sh
       - name: Copy build artefact tar onto remote
-        run: scp -i #{{secrets.STAGING_SSH_PRIVATE_KEY}} ${{ needs.build.outputs.artifact_name }} ${{vars.STAGING_REMOTE_USER}}@${{ vars.STAGING_REMOTE_HOST }}:~/
+        run: scp -i ${{secrets.STAGING_SSH_PRIVATE_KEY}} ${{ needs.build.outputs.artifact_name }} ${{vars.STAGING_REMOTE_USER}}@${{ vars.STAGING_REMOTE_HOST }}:~/
       - name: Untar, move, and run release
-        run: cat ./scripts/deploy.sh | ssh -i ${{secrets.STAGING_SSH_PRIVATE_KEY}} ${{vars.STAGING_REMOTE_USER}}@${{ vars.STAGING_REMOTE_HOST }}
+        run: cat deploy.sh | ssh -i ${{secrets.STAGING_SSH_PRIVATE_KEY}} ${{vars.STAGING_REMOTE_USER}}@${{ vars.STAGING_REMOTE_HOST }}
