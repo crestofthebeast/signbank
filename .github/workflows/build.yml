@@ -69,6 +69,8 @@ jobs:
         working-directory: scripts
 
     steps:
+      - name: Check out the repository to the runner # is there a way to deduplicate this?
+        uses: actions/checkout@v6
       - name: Download a Build Artifact
         uses: actions/download-artifact@v4
         with:
