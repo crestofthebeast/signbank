@@ -3,7 +3,7 @@
 echo "=== Making sure we're in ~/..."
 cd ~
 echo "=== Untarring..."
-tar -xvf build.tar
+tar -xf build.tar
 echo "=== Making directories..."
 sudo mkdir -p /etc/systemd/system
 sudo rm -r /opt/signbank
