@@ -6,7 +6,6 @@
 name: Auslan Signbank
 
 on:
-  workflow_dispatch # in case we want to debug
   push:
     branches:
       - main
