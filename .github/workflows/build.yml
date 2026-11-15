@@ -9,6 +9,7 @@ on:
   push:
     branches:
       - actions-sh-migration
+      - uat
 
 permissions:
   contents: read
